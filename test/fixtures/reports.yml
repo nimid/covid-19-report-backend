@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  new_cases: 1
+  new_recovered: 1
+  new_deaths: 1
+  total_cases: 1
+  total_recovered: 1
+  total_deaths: 1
+  updated_date: 2021-01-23 18:07:50
+
+two:
+  new_cases: 1
+  new_recovered: 1
+  new_deaths: 1
+  total_cases: 1
+  total_recovered: 1
+  total_deaths: 1
+  updated_date: 2021-01-23 18:07:50
