@@ -1,0 +1,11 @@
+%% The content in this file is for Mermaid sequence diagram (https://mermaid-js.github.io/mermaid/#/sequenceDiagram).
+
+sequenceDiagram
+    Client->>+COVID-19 Report: get report
+    COVID-19 Report->>+Department of Disease Control: get today statistic
+    Department of Disease Control-->>-COVID-19 Report: today statistic
+    COVID-19 Report->>COVID-19 Report: retrieve last report
+    alt is last report out of date
+        COVID-19 Report->>COVID-19 Report: update report
+    end
+    COVID-19 Report-->>-Client: report
