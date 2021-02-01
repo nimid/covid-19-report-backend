@@ -1,67 +1,64 @@
-# ruby-getting-started
+# Thailand COVID-19 Report API
 
-A barebones Rails app, which can easily be deployed to Heroku.
+The API backend system for reporting COVID-19 pandemic data in Thailand.
 
-This application supports the [Getting Started on Heroku with Ruby](https://devcenter.heroku.com/articles/getting-started-with-ruby) article - check it out.
+The sequence diagram below gives an overview of how the system works.
 
-## Running Locally
+<img width="500" src="https://raw.githubusercontent.com/nimid/covid-19-report-backend/main/doc/sequence_diagram.png">
 
-Make sure you have Ruby installed.  Also, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (formerly known as the Heroku Toolbelt).
+## Getting Started
 
-```sh
-$ git clone git@github.com:heroku/ruby-getting-started.git
-$ cd ruby-getting-started
+### Prerequisites
+
+1. Ruby on Rails
+2. PostgreSQL
+
+### Installation
+
+```shell
+$ git clone https://github.com/nimid/covid-19-report-backend.git
+$ cd covid-19-report-backend
 $ bundle install
-$ bundle exec rake db:create db:migrate
-$ heroku local
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+## Usage
 
-## Deploying to Heroku
+Start the backend API system.
 
-```sh
-$ heroku create
-$ git push heroku main
-$ heroku run rake db:migrate
-$ heroku open
+```shell
+$ bin/rails server
 ```
 
-or
+```shell
+$ curl 127.0.0.1:3000
+{
+  "new_cases": 836,
+  "new_recovered": 899,
+  "new_deaths": 0,
+  "total_cases": 19618,
+  "total_recovered": 12514,
+  "total_deaths": 77,
+  "updated_date": "2021-02-01 11:59:00 UTC"
+}
+```
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+### Sample Online
 
-## Docker
+https://young-shelf-74766.herokuapp.com/
 
-The app can be run and tested using the [Heroku Docker CLI plugin](https://devcenter.heroku.com/articles/local-development-with-docker-compose).
 
-Make sure the plugin is installed:
+### Response
 
-    heroku plugins:install heroku-docker
+| Name            | Type     | Description
+|---              |---       |---
+| new_cases       | integer  | The number of new infected people for today.
+| new_recovered   | integer  | The number of people who have recovered for today.
+| new_deaths      | integer  | The number of new deaths for today.
+| total_cases     | integer  | The total number of infected people since 1st January 2020.
+| total_recovered | integer  | The total number of people who have recovered since 1st January 2020.
+| total_deaths    | integer  | The total number of deaths since 1st January 2020.
+| updated_date    | datetime | The date and time that report has been updated in format of YYYY-MM-DD HH:MM:ss.
 
-Configure Docker and Docker Compose:
+## License
 
-    heroku docker:init
-
-And run the app locally:
-
-    docker-compose up web
-
-The app will now be available on the Docker daemon IP on port 8080.
-
-To work with the local database and do migrations, you can open a shell:
-
-    docker-compose run shell
-    bundle exec rake db:migrate
-
-You can also use Docker to release to Heroku:
-
-    heroku create
-    heroku docker:release
-    heroku open
-
-## Documentation
-
-For more information about using Ruby on Heroku, see these Dev Center articles:
-
-- [Ruby on Heroku](https://devcenter.heroku.com/categories/ruby)
+[MIT License](https://github.com/nimid/covid-19-report-backend/blob/main/LICENSE).
